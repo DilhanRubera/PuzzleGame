@@ -1,0 +1,58 @@
+plugins {
+    id "java"
+    id "application"
+    id "pmd"
+    id "org.openjfx.javafxplugin" version "0.1.0"
+    id 'com.intershop.gradle.javacc' version '4.1.3'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+
+javafx {
+    version = '21'
+    modules = [ 'javafx.controls' ]
+}
+
+pmd {
+    consoleOutput = true
+    toolVersion = "7.3.0"
+    rulesMinimumPriority = 5
+    ruleSets = []
+    ruleSetFiles = files("saed-pmd-rules.xml")
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xlint:all,-serial"
+}
+
+tasks.named("run") {
+    environment["PATH"] = (
+        layout.projectDirectory.dir("comms").dir("bin").toString()
+        + File.pathSeparator
+        + System.getenv("PATH"))
+        // + environment["PATH"])
+}
+
+javacc {
+    configs {
+        myparser {
+            inputFile = file('src/main/jjparser/GameParser.jj')
+            packageName = 'edu.curtin.saed.assignment2'
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ':api')
+    implementation project(path: ':teleportplugin')
+    implementation project(path: ':penaltyplugin')
+    implementation project(path: ':revealplugin')
+    implementation project(path: ':models')
+    implementation 'org.python:jython-standalone:2.7.2'
+
+
+}

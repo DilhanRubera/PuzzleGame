@@ -1,0 +1,14 @@
+plugins {
+    id "java"
+}
+group = '.api'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(path: ':models')
+    implementation 'org.python:jython-standalone:2.7.2'
+
+}

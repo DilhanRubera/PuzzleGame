@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/input.utf32.map" charset="UTF-32" />
+    <file url="file://$PROJECT_DIR$/testinput-0.utf16.map" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/testinput-0.utf32.map" charset="UTF-32" />
+    <file url="file://$PROJECT_DIR$/testinput-0.utf8 - Copy.map" charset="UTF-16" />
+  </component>
+</project>

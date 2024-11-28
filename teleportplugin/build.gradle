@@ -1,0 +1,13 @@
+plugins {
+    id "java"
+}
+group = '.edu.curtin.gameplugins'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(path: ':api')
+    implementation project(path: ':models')
+}

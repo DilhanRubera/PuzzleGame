@@ -1,0 +1,86 @@
+size (14,15)
+start (8,1)
+goal (8,2)
+
+script !{
+class PlayerProgressCounter:
+    def __init__(self, api):
+        self.api = api
+        self.item_count = 0
+        self.obstacle_count = 0
+
+    # Callback for when an item is acquired
+    def onItemAcquired(self):
+        self.item_count += 1
+        print("pyscript - Item Acquired")
+        self.checkSpecialItemAward()
+
+    # Callback for when an obstacle is traversed
+    def onObstacleTraversed(self):
+        self.obstacle_count += 1
+        print("pyscript - Obstacle traversed")
+        self.checkSpecialItemAward()
+
+    # Check if a special item should be awarded
+    def checkSpecialItemAward(self):
+        total_actions = self.item_count + self.obstacle_count
+        if total_actions >= 5:
+            # Add special item to inventory
+            self.api.addItemToInventory("Special Prize")
+            print("Special Item added to inventory!")
+            # Reset counts to allow for future special items
+            self.item_count = 0
+            self.obstacle_count = 0
+
+# Instantiate the counter and assign the callbacks
+counter = PlayerProgressCounter(api)
+api.setOnItemAcquiredCallback(counter.onItemAcquired)
+api.setOnObstacleTraversedCallback(counter.onObstacleTraversed)
+}
+
+
+obstacle {
+  at (11,12), (3,3), (2,7), (11,3), (4,2), (8,3), (2,4), (12,11), (1,7), (8,9), (1,13), (5,8), (2,5), (3,1), (9,7)
+  requires "sentient orange vial", "glowing turquoise book"
+}
+
+item "map" {
+  at (8,4)
+  message "map found"
+}
+
+plugin edu.curtin.gameplugins.Teleport
+
+plugin edu.curtin.gameplugins.Penalty
+
+plugin edu.curtin.gameplugins.Reveal
+
+
+item "sentient orange vial" {
+  at (8,14), (2,1), (8,8), (12,4), (6,11), (0,6), (12,5), (7,12), (4,13), (6,1), (1,1), (7,5)
+  message "qzVnu"
+}
+plugin edu.curtin.gameplugins.Teleport
+
+plugin edu.curtin.gameplugins.Teleport
+
+obstacle {
+  at (13,4), (7,0), (0,1), (11,8), (10,9), (11,13), (0,8), (12,7), (5,6), (10,0), (11,2), (2,0), (5,1), (1,12)
+  requires "sentient orange vial", "glowing turquoise book"
+}
+
+item "glowing turquoise book" {
+  at (9,4), (10,7), (8,12), (10,1), (4,14), (5,10), (5,13), (3,6), (9,12), (3,14), (13,3), (10,5), (0,5), (4,6), (7,9), (0,7), (7,7), (1,14), (10,14)
+  message "MtuZTEZk"
+}
+
+
+
+
+obstacle {
+  at (12,10), (6,9), (3,0), (10,10), (11,9), (13,6), (12,0), (5,2), (9,1), (5,5), (13,11), (12,13), (2,8)
+  requires "sentient orange vial", "glowing turquoise book"
+}
+
+
+

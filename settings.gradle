@@ -1,0 +1,8 @@
+rootProject.name = 'saed2024_assignment2_start_javafx'
+include 'src'
+include 'coreapp'
+include 'api'
+include 'teleportplugin'
+include 'revealplugin'
+include 'penaltyplugin'
+include 'models'
